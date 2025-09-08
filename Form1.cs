@@ -15,6 +15,19 @@ namespace DesafioPractico1
         public Form1()
         {
             InitializeComponent();
+
+            dgvLibros.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvLibros.AllowUserToAddRows = false;
+            dgvLibros.ReadOnly = true;
+            dgvLibros.Columns.Add("id", "ID");
+            dgvLibros.Columns.Add("titulo", "Título");
+            dgvLibros.Columns.Add("autor", "Autor");
+            dgvLibros.Columns.Add("anio", "Anio");
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
