@@ -167,6 +167,17 @@ namespace DesafioPractico1
                 .GroupBy(p => p.NombreUsuario)
                 .ToDictionary(u => u.Key, u => u.Count());
         }
+
+        public Dictionary<string, int> ObtenerEstadisticasLibros()
+        {
+            return repositorioPrestamos.ListarPrestamos()
+                .GroupBy(p => p.IdLibro)
+                .ToDictionary(g => { var libro = repositorioLibros.Buscar(g.Key);
+                return libro?.Titulo ?? "Libro no encontrado";
+            },
+            g => g.Count());
+        }
+
         private void CargarDatosDeEjemplo()
         {
             AgregarLibro("El Gran Gatsby", "F. Scott Fitzgerald", 1925);

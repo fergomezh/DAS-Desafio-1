@@ -6,30 +6,128 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Web;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace DesafioPractico1
 {
     public partial class Form1 : Form
     {
         private readonly GestorBiblioteca gestorBiblioteca;
+        private int? filtroUsuarioId = null; // Variable para almacenar el ID del usuario filtrado
 
         public Form1()
         {
             InitializeComponent();
 
+            // Configuración de DataGridViews
             dgvLibros.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvLibros.AllowUserToAddRows = false;
             dgvLibros.ReadOnly = true;
+            dgvLibros.AutoGenerateColumns = false;
 
             dgvUsuarios.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvUsuarios.AllowUserToAddRows = false;
             dgvUsuarios.ReadOnly = true;
+            dgvUsuarios.AutoGenerateColumns = false;
 
             dgvPrestamos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvPrestamos.AllowUserToAddRows = false;
             dgvPrestamos.ReadOnly = true;
+            dgvPrestamos.AutoGenerateColumns = false;
+
+            dgvLibros.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                HeaderText = "ID",
+                DataPropertyName = "Id",
+                Name = "Id"
+            });
+            dgvLibros.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                HeaderText = "Título",
+                DataPropertyName = "Titulo",
+                Name = "Titulo"
+            });
+            dgvLibros.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                HeaderText = "Autor",
+                DataPropertyName = "Autor",
+                Name = "Autor"
+            });
+            dgvLibros.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                HeaderText = "Año",
+                DataPropertyName = "Anio",
+                Name = "Anio"
+            });
+            dgvLibros.Columns.Add(new DataGridViewCheckBoxColumn
+            {
+                HeaderText = "Disponible",
+                DataPropertyName = "Disponible",
+                Name = "Disponible",
+                ReadOnly = true
+            });
+
+            
+            dgvUsuarios.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                HeaderText = "ID",
+                DataPropertyName = "Id",
+                Name = "Id"
+            });
+            dgvUsuarios.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                HeaderText = "Nombre",
+                DataPropertyName = "Nombre",
+                Name = "Nombre"
+            });
+            dgvUsuarios.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                HeaderText = "Correo",
+                DataPropertyName = "Email",
+                Name = "Email"
+            });
+
+
+            dgvPrestamos.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                HeaderText = "ID",
+                DataPropertyName = "Id",
+                Name = "Id"
+            });
+            dgvPrestamos.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                HeaderText = "Usuario",
+                DataPropertyName = "NombreUsuario",
+                Name = "NombreUsuario"
+            });
+            dgvPrestamos.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                HeaderText = "Libro",
+                DataPropertyName = "TituloLibro",
+                Name = "TituloLibro"
+            });
+            dgvPrestamos.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                HeaderText = "Fecha Prestamo",
+                DataPropertyName = "FechaPrestamo",
+                Name = "FechaPrestamo",
+                DefaultCellStyle = new DataGridViewCellStyle { Format = "dd/MM/yyyy" }
+            });
+            dgvPrestamos.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                HeaderText = "Fecha Devolucion",
+                DataPropertyName = "FechaDevolucion",
+                Name = "FechaDevolucion",
+                DefaultCellStyle = new DataGridViewCellStyle { Format = "dd/MM/yyyy" }
+            });
+            dgvPrestamos.Columns.Add(new DataGridViewCheckBoxColumn
+            {
+                HeaderText = "Activo",
+                DataPropertyName = "Activo",
+                Name = "Activo",
+                ReadOnly = true
+            });
 
             gestorBiblioteca = new GestorBiblioteca();
             ActualizarTodo();
@@ -37,7 +135,6 @@ namespace DesafioPractico1
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
         }
 
         private void btnAgregarLibro_Click(object sender, EventArgs e)
@@ -45,7 +142,7 @@ namespace DesafioPractico1
             if (ValidarCamposLibro())
             {
                 gestorBiblioteca.AgregarLibro(txtTitulo.Text, txtAutor.Text, int.Parse(txtAnio.Text));
-                MessageBox.Show("Libro agregado exitosamente!", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Libro agregado exitosamente!", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 LimpiarCamposLibro();
                 ActualizarGridLibros();
             }
@@ -61,9 +158,8 @@ namespace DesafioPractico1
         {
             if (string.IsNullOrEmpty(txtTitulo.Text))
             {
-                MostrarError("El titulo no puede estar vacio!");
+                MostrarError("El título no puede estar vacio!");
                 return false;
-
             }
             else if (string.IsNullOrEmpty(txtAutor.Text))
             {
@@ -72,7 +168,7 @@ namespace DesafioPractico1
             }
             else if (!int.TryParse(txtAnio.Text, out int anio) || anio <= 0)
             {
-                MostrarError("El año debe ser un número positivo!");
+                MostrarError("El año debe ser un numero positivo!");
                 return false;
             }
             return true;
@@ -113,11 +209,15 @@ namespace DesafioPractico1
         {
             if (dgvLibros.SelectedRows.Count == 1)
             {
-                var id = (int)dgvLibros.SelectedRows[0].Cells["Id"].Value;
-                gestorBiblioteca.EliminarLibro(id);
-                LimpiarCamposLibro();
-                ActualizarGridLibros();
-                return;
+                if (MessageBox.Show("Esta seguro de eliminar este libro?", "Informacion", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                {
+                    var id = (int)dgvLibros.SelectedRows[0].Cells["Id"].Value;
+                    gestorBiblioteca.EliminarLibro(id);
+                    MessageBox.Show("Libro eliminado con exito!", "Informacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    LimpiarCamposLibro();
+                    ActualizarGridLibros();
+                    return;
+                }
             }
             else if (dgvLibros.SelectedRows.Count == 0 || dgvLibros.SelectedRows.Count > 1)
             {
@@ -143,7 +243,6 @@ namespace DesafioPractico1
             {
                 MostrarError("El nombre no puede estar vacio!");
                 return false;
-
             }
             else if (string.IsNullOrEmpty(txtCorreo.Text))
             {
@@ -164,7 +263,7 @@ namespace DesafioPractico1
             {
                 gestorBiblioteca.AgregarUsuario(txtNombre.Text, txtCorreo.Text);
                 LimpiarCamposUsuario();
-                ActualizarGridUsuarios();
+                ActualizarTodo();
             }
         }
 
@@ -186,7 +285,7 @@ namespace DesafioPractico1
             }
             else if (dgvUsuarios.SelectedRows.Count == 0 || dgvUsuarios.SelectedRows.Count > 1)
             {
-                MostrarError("Debe seleccionar (una fila) libro para editar.");
+                MostrarError("Debe seleccionar (una fila) usuario para editar.");
                 return;
             }
         }
@@ -196,9 +295,10 @@ namespace DesafioPractico1
             if (dgvUsuarios.SelectedRows.Count == 1)
             {
                 var id = (int)dgvUsuarios.SelectedRows[0].Cells["Id"].Value;
-                if (MessageBox.Show("¿Está seguro que desea eliminar el usuario seleccionado? Se eliminarán todos los préstamos asociados a este usuario.", "Confirmar eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                if (MessageBox.Show("¿Esta seguro que desea eliminar el usuario seleccionado? Se eliminarán todos los préstamos asociados a este usuario.", "Confirmar eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
                 {
                     gestorBiblioteca.EliminarUsuario(id);
+                    MessageBox.Show("Usuario eliminado con exito!", "Informacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     LimpiarCamposUsuario();
                     ActualizarGridUsuarios();
                 }
@@ -214,7 +314,21 @@ namespace DesafioPractico1
         private void ActualizarGridPrestamos()
         {
             dgvPrestamos.DataSource = null;
-            dgvPrestamos.DataSource = chkPrestamosActivos.Checked ? gestorBiblioteca.ObtenerPrestamosActivos() : gestorBiblioteca.ObtenerTodosPrestamos();
+            if (filtroUsuarioId.HasValue)
+            {
+                // Mostrar préstamos del usuario seleccionado, filtrados por activos si el checkbox está marcado
+                var prestamos = chkPrestamosActivos.Checked
+                    ? gestorBiblioteca.ObtenerPrestamosActivos().Where(p => p.IdUsuario == filtroUsuarioId.Value).ToList()
+                    : gestorBiblioteca.ObtenerTodosPrestamos().Where(p => p.IdUsuario == filtroUsuarioId.Value).ToList();
+                dgvPrestamos.DataSource = prestamos;
+            }
+            else
+            {
+                // Mostrar todos los préstamos, filtrados por activos si el checkbox está marcado
+                dgvPrestamos.DataSource = chkPrestamosActivos.Checked
+                    ? gestorBiblioteca.ObtenerPrestamosActivos()
+                    : gestorBiblioteca.ObtenerTodosPrestamos();
+            }
         }
 
         private void ActualizarComboBoxUsuarios()
@@ -264,8 +378,8 @@ namespace DesafioPractico1
             ActualizarComboBoxUsuarios();
             ActualizarGridLibros();
             ActualizarGridPrestamos();
-            ActualizarGridPrestamos();
             ActualizarGridUsuarios();
+            ActualizarGrafico();
         }
 
         private void btnDevolverLibro_Click(object sender, EventArgs e)
@@ -281,7 +395,7 @@ namespace DesafioPractico1
                     return;
                 }
 
-                if (MessageBox.Show("Cofirma la devolucion?", "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.Yes)
+                if (MessageBox.Show("Confirma la devolucion?", "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.Yes)
                 {
                     if (gestorBiblioteca.DevolverLibro(id))
                     {
@@ -296,7 +410,7 @@ namespace DesafioPractico1
             }
             else
             {
-                MessageBox.Show("Seleccione un prestamo para devolver.", "Informacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Seleccione un préstamo para devolver.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -304,6 +418,63 @@ namespace DesafioPractico1
         {
             ActualizarGridPrestamos();
         }
+
+        private void btnFiltrarPrestamos_Click(object sender, EventArgs e)
+        {
+            if (cmbUsuarios.SelectedValue != null)
+            {
+                filtroUsuarioId = (int)cmbUsuarios.SelectedValue;
+                ActualizarGridPrestamos();
+            }
+            else
+            {
+                MessageBox.Show("Seleccione un usuario para filtrar los préstamos.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void btnRestablecerPrestamos_Click(object sender, EventArgs e)
+        {
+            filtroUsuarioId = null;
+            ActualizarGridPrestamos();
+            cmbUsuarios.SelectedIndex = -1; // Desseleccionar el usuario
+        }
+
+        private void ActualizarGrafico()
+        {
+            chartEstadisticas.Series.Clear();
+
+            var series = new Series { ChartType = SeriesChartType.Column, Name = "Datos" };
+
+            if (cmbTipoGrafico.SelectedIndex == 0)
+            {
+                chartEstadisticas.Titles.Clear();
+                chartEstadisticas.Titles.Add("Usuarios Más Activos");
+                var stats = gestorBiblioteca.ObtenerEstadisticasUsuarios();
+                foreach (var stat in stats.OrderByDescending(x => x.Value).Take(10))
+                {
+                    series.Points.AddXY(stat.Key, stat.Value);
+                }
+            }
+            else if (cmbTipoGrafico.SelectedIndex == 1)
+            {
+                chartEstadisticas.Titles.Clear();
+                chartEstadisticas.Titles.Add("Libros Más Prestados");
+                var stats = gestorBiblioteca.ObtenerEstadisticasLibros();
+                foreach (var stat in stats.OrderByDescending(x => x.Value).Take(10))
+                {
+                    series.Points.AddXY(stat.Key, stat.Value);
+                }
+            }
+
+            chartEstadisticas.Series.Add(series);
+            chartEstadisticas.ChartAreas[0].AxisX.Interval = 1;
+            chartEstadisticas.ChartAreas[0].AxisX.LabelStyle.Angle = -45;
+            chartEstadisticas.ChartAreas[0].AxisY.Title = "Cantidad";
+        }
+
+        private void cmbTipoGrafico_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ActualizarGrafico();
+        }
     }
 }
-

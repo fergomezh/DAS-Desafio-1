@@ -28,6 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabLibros = new System.Windows.Forms.TabPage();
             this.dgvLibros = new System.Windows.Forms.DataGridView();
@@ -53,15 +56,20 @@
             this.txtNombre = new System.Windows.Forms.TextBox();
             this.lblNombre = new System.Windows.Forms.Label();
             this.tabPrestamos = new System.Windows.Forms.TabPage();
+            this.dgvPrestamos = new System.Windows.Forms.DataGridView();
+            this.chkPrestamosActivos = new System.Windows.Forms.CheckBox();
+            this.btnDevolverLibro = new System.Windows.Forms.Button();
+            this.btnRealizarPrestamo = new System.Windows.Forms.Button();
+            this.cmbLibros = new System.Windows.Forms.ComboBox();
             this.cmbUsuarios = new System.Windows.Forms.ComboBox();
+            this.lblLibro = new System.Windows.Forms.Label();
             this.lblUsuario = new System.Windows.Forms.Label();
             this.tabEstadisticas = new System.Windows.Forms.TabPage();
-            this.lblLibro = new System.Windows.Forms.Label();
-            this.cmbLibros = new System.Windows.Forms.ComboBox();
-            this.btnRealizarPrestamo = new System.Windows.Forms.Button();
-            this.btnDevolverLibro = new System.Windows.Forms.Button();
-            this.chkPrestamosActivos = new System.Windows.Forms.CheckBox();
-            this.dgvPrestamos = new System.Windows.Forms.DataGridView();
+            this.chartEstadisticas = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.cmbTipoGrafico = new System.Windows.Forms.ComboBox();
+            this.lblGrafico = new System.Windows.Forms.Label();
+            this.btnFiltrarPrestamos = new System.Windows.Forms.Button();
+            this.btnRestablecerPrestamos = new System.Windows.Forms.Button();
             this.tabControl.SuspendLayout();
             this.tabLibros.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLibros)).BeginInit();
@@ -69,6 +77,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsuarios)).BeginInit();
             this.tabPrestamos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPrestamos)).BeginInit();
+            this.tabEstadisticas.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chartEstadisticas)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl
@@ -320,6 +330,8 @@
             // 
             this.tabPrestamos.Controls.Add(this.dgvPrestamos);
             this.tabPrestamos.Controls.Add(this.chkPrestamosActivos);
+            this.tabPrestamos.Controls.Add(this.btnRestablecerPrestamos);
+            this.tabPrestamos.Controls.Add(this.btnFiltrarPrestamos);
             this.tabPrestamos.Controls.Add(this.btnDevolverLibro);
             this.tabPrestamos.Controls.Add(this.btnRealizarPrestamo);
             this.tabPrestamos.Controls.Add(this.cmbLibros);
@@ -333,81 +345,6 @@
             this.tabPrestamos.Text = "Gestion de Prestamos";
             this.tabPrestamos.UseVisualStyleBackColor = true;
             // 
-            // cmbUsuarios
-            // 
-            this.cmbUsuarios.FormattingEnabled = true;
-            this.cmbUsuarios.Location = new System.Drawing.Point(92, 11);
-            this.cmbUsuarios.Name = "cmbUsuarios";
-            this.cmbUsuarios.Size = new System.Drawing.Size(228, 24);
-            this.cmbUsuarios.TabIndex = 1;
-            // 
-            // lblUsuario
-            // 
-            this.lblUsuario.AutoSize = true;
-            this.lblUsuario.Location = new System.Drawing.Point(17, 14);
-            this.lblUsuario.Name = "lblUsuario";
-            this.lblUsuario.Size = new System.Drawing.Size(54, 16);
-            this.lblUsuario.TabIndex = 0;
-            this.lblUsuario.Text = "Usuario";
-            // 
-            // tabEstadisticas
-            // 
-            this.tabEstadisticas.Location = new System.Drawing.Point(4, 25);
-            this.tabEstadisticas.Name = "tabEstadisticas";
-            this.tabEstadisticas.Padding = new System.Windows.Forms.Padding(3);
-            this.tabEstadisticas.Size = new System.Drawing.Size(1056, 615);
-            this.tabEstadisticas.TabIndex = 3;
-            this.tabEstadisticas.Text = "Estadisticas";
-            this.tabEstadisticas.UseVisualStyleBackColor = true;
-            // 
-            // lblLibro
-            // 
-            this.lblLibro.AutoSize = true;
-            this.lblLibro.Location = new System.Drawing.Point(358, 14);
-            this.lblLibro.Name = "lblLibro";
-            this.lblLibro.Size = new System.Drawing.Size(37, 16);
-            this.lblLibro.TabIndex = 0;
-            this.lblLibro.Text = "Libro";
-            // 
-            // cmbLibros
-            // 
-            this.cmbLibros.FormattingEnabled = true;
-            this.cmbLibros.Location = new System.Drawing.Point(433, 11);
-            this.cmbLibros.Name = "cmbLibros";
-            this.cmbLibros.Size = new System.Drawing.Size(228, 24);
-            this.cmbLibros.TabIndex = 1;
-            // 
-            // btnRealizarPrestamo
-            // 
-            this.btnRealizarPrestamo.Location = new System.Drawing.Point(20, 51);
-            this.btnRealizarPrestamo.Name = "btnRealizarPrestamo";
-            this.btnRealizarPrestamo.Size = new System.Drawing.Size(165, 43);
-            this.btnRealizarPrestamo.TabIndex = 8;
-            this.btnRealizarPrestamo.Text = "Realizar Prestamo";
-            this.btnRealizarPrestamo.UseVisualStyleBackColor = true;
-            this.btnRealizarPrestamo.Click += new System.EventHandler(this.btnRealizarPrestamo_Click);
-            // 
-            // btnDevolverLibro
-            // 
-            this.btnDevolverLibro.Location = new System.Drawing.Point(204, 51);
-            this.btnDevolverLibro.Name = "btnDevolverLibro";
-            this.btnDevolverLibro.Size = new System.Drawing.Size(165, 43);
-            this.btnDevolverLibro.TabIndex = 8;
-            this.btnDevolverLibro.Text = "Devolver Seleccionado";
-            this.btnDevolverLibro.UseVisualStyleBackColor = true;
-            this.btnDevolverLibro.Click += new System.EventHandler(this.btnDevolverLibro_Click);
-            // 
-            // chkPrestamosActivos
-            // 
-            this.chkPrestamosActivos.AutoSize = true;
-            this.chkPrestamosActivos.Location = new System.Drawing.Point(20, 110);
-            this.chkPrestamosActivos.Name = "chkPrestamosActivos";
-            this.chkPrestamosActivos.Size = new System.Drawing.Size(216, 20);
-            this.chkPrestamosActivos.TabIndex = 9;
-            this.chkPrestamosActivos.Text = "Mostrar solo prestamos activos";
-            this.chkPrestamosActivos.UseVisualStyleBackColor = true;
-            this.chkPrestamosActivos.CheckedChanged += new System.EventHandler(this.chkPrestamosActivos_CheckedChanged);
-            // 
             // dgvPrestamos
             // 
             this.dgvPrestamos.AllowUserToAddRows = false;
@@ -420,6 +357,141 @@
             this.dgvPrestamos.RowTemplate.Height = 24;
             this.dgvPrestamos.Size = new System.Drawing.Size(1050, 476);
             this.dgvPrestamos.TabIndex = 10;
+            // 
+            // chkPrestamosActivos
+            // 
+            this.chkPrestamosActivos.AutoSize = true;
+            this.chkPrestamosActivos.Location = new System.Drawing.Point(20, 110);
+            this.chkPrestamosActivos.Name = "chkPrestamosActivos";
+            this.chkPrestamosActivos.Size = new System.Drawing.Size(216, 20);
+            this.chkPrestamosActivos.TabIndex = 9;
+            this.chkPrestamosActivos.Text = "Mostrar solo prestamos activos";
+            this.chkPrestamosActivos.UseVisualStyleBackColor = true;
+            this.chkPrestamosActivos.CheckedChanged += new System.EventHandler(this.chkPrestamosActivos_CheckedChanged);
+            // 
+            // btnDevolverLibro
+            // 
+            this.btnDevolverLibro.Location = new System.Drawing.Point(204, 51);
+            this.btnDevolverLibro.Name = "btnDevolverLibro";
+            this.btnDevolverLibro.Size = new System.Drawing.Size(165, 43);
+            this.btnDevolverLibro.TabIndex = 8;
+            this.btnDevolverLibro.Text = "Devolver Seleccionado";
+            this.btnDevolverLibro.UseVisualStyleBackColor = true;
+            this.btnDevolverLibro.Click += new System.EventHandler(this.btnDevolverLibro_Click);
+            // 
+            // btnRealizarPrestamo
+            // 
+            this.btnRealizarPrestamo.Location = new System.Drawing.Point(20, 51);
+            this.btnRealizarPrestamo.Name = "btnRealizarPrestamo";
+            this.btnRealizarPrestamo.Size = new System.Drawing.Size(165, 43);
+            this.btnRealizarPrestamo.TabIndex = 8;
+            this.btnRealizarPrestamo.Text = "Realizar Prestamo";
+            this.btnRealizarPrestamo.UseVisualStyleBackColor = true;
+            this.btnRealizarPrestamo.Click += new System.EventHandler(this.btnRealizarPrestamo_Click);
+            // 
+            // cmbLibros
+            // 
+            this.cmbLibros.FormattingEnabled = true;
+            this.cmbLibros.Location = new System.Drawing.Point(433, 11);
+            this.cmbLibros.Name = "cmbLibros";
+            this.cmbLibros.Size = new System.Drawing.Size(228, 24);
+            this.cmbLibros.TabIndex = 1;
+            // 
+            // cmbUsuarios
+            // 
+            this.cmbUsuarios.FormattingEnabled = true;
+            this.cmbUsuarios.Location = new System.Drawing.Point(92, 11);
+            this.cmbUsuarios.Name = "cmbUsuarios";
+            this.cmbUsuarios.Size = new System.Drawing.Size(228, 24);
+            this.cmbUsuarios.TabIndex = 1;
+            // 
+            // lblLibro
+            // 
+            this.lblLibro.AutoSize = true;
+            this.lblLibro.Location = new System.Drawing.Point(358, 14);
+            this.lblLibro.Name = "lblLibro";
+            this.lblLibro.Size = new System.Drawing.Size(37, 16);
+            this.lblLibro.TabIndex = 0;
+            this.lblLibro.Text = "Libro";
+            // 
+            // lblUsuario
+            // 
+            this.lblUsuario.AutoSize = true;
+            this.lblUsuario.Location = new System.Drawing.Point(17, 14);
+            this.lblUsuario.Name = "lblUsuario";
+            this.lblUsuario.Size = new System.Drawing.Size(54, 16);
+            this.lblUsuario.TabIndex = 0;
+            this.lblUsuario.Text = "Usuario";
+            // 
+            // tabEstadisticas
+            // 
+            this.tabEstadisticas.Controls.Add(this.chartEstadisticas);
+            this.tabEstadisticas.Controls.Add(this.cmbTipoGrafico);
+            this.tabEstadisticas.Controls.Add(this.lblGrafico);
+            this.tabEstadisticas.Location = new System.Drawing.Point(4, 25);
+            this.tabEstadisticas.Name = "tabEstadisticas";
+            this.tabEstadisticas.Padding = new System.Windows.Forms.Padding(3);
+            this.tabEstadisticas.Size = new System.Drawing.Size(1056, 615);
+            this.tabEstadisticas.TabIndex = 3;
+            this.tabEstadisticas.Text = "Estadisticas";
+            this.tabEstadisticas.UseVisualStyleBackColor = true;
+            // 
+            // chartEstadisticas
+            // 
+            chartArea3.Name = "ChartArea1";
+            this.chartEstadisticas.ChartAreas.Add(chartArea3);
+            legend3.Name = "Legend1";
+            this.chartEstadisticas.Legends.Add(legend3);
+            this.chartEstadisticas.Location = new System.Drawing.Point(23, 60);
+            this.chartEstadisticas.Name = "chartEstadisticas";
+            series3.ChartArea = "ChartArea1";
+            series3.Legend = "Legend1";
+            series3.Name = "Series1";
+            this.chartEstadisticas.Series.Add(series3);
+            this.chartEstadisticas.Size = new System.Drawing.Size(1018, 549);
+            this.chartEstadisticas.TabIndex = 2;
+            this.chartEstadisticas.Text = "chart1";
+            // 
+            // cmbTipoGrafico
+            // 
+            this.cmbTipoGrafico.FormattingEnabled = true;
+            this.cmbTipoGrafico.Items.AddRange(new object[] {
+            "Usuarios Mas Activos",
+            "Libros Mas Prestados"});
+            this.cmbTipoGrafico.Location = new System.Drawing.Point(143, 17);
+            this.cmbTipoGrafico.Name = "cmbTipoGrafico";
+            this.cmbTipoGrafico.Size = new System.Drawing.Size(243, 24);
+            this.cmbTipoGrafico.TabIndex = 1;
+            this.cmbTipoGrafico.SelectedIndexChanged += new System.EventHandler(this.cmbTipoGrafico_SelectedIndexChanged);
+            // 
+            // lblGrafico
+            // 
+            this.lblGrafico.AutoSize = true;
+            this.lblGrafico.Location = new System.Drawing.Point(20, 20);
+            this.lblGrafico.Name = "lblGrafico";
+            this.lblGrafico.Size = new System.Drawing.Size(103, 16);
+            this.lblGrafico.TabIndex = 0;
+            this.lblGrafico.Text = "Tipo de Grafico:";
+            // 
+            // btnFiltrarPrestamos
+            // 
+            this.btnFiltrarPrestamos.Location = new System.Drawing.Point(388, 51);
+            this.btnFiltrarPrestamos.Name = "btnFiltrarPrestamos";
+            this.btnFiltrarPrestamos.Size = new System.Drawing.Size(165, 43);
+            this.btnFiltrarPrestamos.TabIndex = 8;
+            this.btnFiltrarPrestamos.Text = "Filtrar por Usuario";
+            this.btnFiltrarPrestamos.UseVisualStyleBackColor = true;
+            this.btnFiltrarPrestamos.Click += new System.EventHandler(this.btnFiltrarPrestamos_Click);
+            // 
+            // btnRestablecerPrestamos
+            // 
+            this.btnRestablecerPrestamos.Location = new System.Drawing.Point(570, 51);
+            this.btnRestablecerPrestamos.Name = "btnRestablecerPrestamos";
+            this.btnRestablecerPrestamos.Size = new System.Drawing.Size(165, 43);
+            this.btnRestablecerPrestamos.TabIndex = 8;
+            this.btnRestablecerPrestamos.Text = "Restablecer Filtro";
+            this.btnRestablecerPrestamos.UseVisualStyleBackColor = true;
+            this.btnRestablecerPrestamos.Click += new System.EventHandler(this.btnRestablecerPrestamos_Click);
             // 
             // Form1
             // 
@@ -440,6 +512,9 @@
             this.tabPrestamos.ResumeLayout(false);
             this.tabPrestamos.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPrestamos)).EndInit();
+            this.tabEstadisticas.ResumeLayout(false);
+            this.tabEstadisticas.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chartEstadisticas)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -480,6 +555,11 @@
         private System.Windows.Forms.CheckBox chkPrestamosActivos;
         private System.Windows.Forms.Button btnDevolverLibro;
         private System.Windows.Forms.Button btnRealizarPrestamo;
+        private System.Windows.Forms.Label lblGrafico;
+        private System.Windows.Forms.ComboBox cmbTipoGrafico;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chartEstadisticas;
+        private System.Windows.Forms.Button btnFiltrarPrestamos;
+        private System.Windows.Forms.Button btnRestablecerPrestamos;
     }
 }
 
