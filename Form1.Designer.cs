@@ -44,11 +44,31 @@
             this.lblBuscar = new System.Windows.Forms.Label();
             this.lblTitulo = new System.Windows.Forms.Label();
             this.tabUsuarios = new System.Windows.Forms.TabPage();
+            this.dgvUsuarios = new System.Windows.Forms.DataGridView();
+            this.btnEliminarUsuario = new System.Windows.Forms.Button();
+            this.btnEditarUsuario = new System.Windows.Forms.Button();
+            this.btnAgregarUsuario = new System.Windows.Forms.Button();
+            this.txtCorreo = new System.Windows.Forms.TextBox();
+            this.lblCorreo = new System.Windows.Forms.Label();
+            this.txtNombre = new System.Windows.Forms.TextBox();
+            this.lblNombre = new System.Windows.Forms.Label();
             this.tabPrestamos = new System.Windows.Forms.TabPage();
+            this.cmbUsuarios = new System.Windows.Forms.ComboBox();
+            this.lblUsuario = new System.Windows.Forms.Label();
             this.tabEstadisticas = new System.Windows.Forms.TabPage();
+            this.lblLibro = new System.Windows.Forms.Label();
+            this.cmbLibros = new System.Windows.Forms.ComboBox();
+            this.btnRealizarPrestamo = new System.Windows.Forms.Button();
+            this.btnDevolverLibro = new System.Windows.Forms.Button();
+            this.chkPrestamosActivos = new System.Windows.Forms.CheckBox();
+            this.dgvPrestamos = new System.Windows.Forms.DataGridView();
             this.tabControl.SuspendLayout();
             this.tabLibros.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLibros)).BeginInit();
+            this.tabUsuarios.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvUsuarios)).BeginInit();
+            this.tabPrestamos.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPrestamos)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl
@@ -57,7 +77,7 @@
             this.tabControl.Controls.Add(this.tabUsuarios);
             this.tabControl.Controls.Add(this.tabPrestamos);
             this.tabControl.Controls.Add(this.tabEstadisticas);
-            this.tabControl.Location = new System.Drawing.Point(13, 13);
+            this.tabControl.Location = new System.Drawing.Point(12, 12);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
             this.tabControl.Size = new System.Drawing.Size(1064, 644);
@@ -91,12 +111,12 @@
             this.dgvLibros.AllowUserToAddRows = false;
             this.dgvLibros.AllowUserToDeleteRows = false;
             this.dgvLibros.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvLibros.Location = new System.Drawing.Point(10, 147);
+            this.dgvLibros.Location = new System.Drawing.Point(3, 148);
             this.dgvLibros.Name = "dgvLibros";
             this.dgvLibros.ReadOnly = true;
             this.dgvLibros.RowHeadersWidth = 51;
             this.dgvLibros.RowTemplate.Height = 24;
-            this.dgvLibros.Size = new System.Drawing.Size(1043, 465);
+            this.dgvLibros.Size = new System.Drawing.Size(1050, 464);
             this.dgvLibros.TabIndex = 5;
             // 
             // btnEliminarLibro
@@ -107,6 +127,7 @@
             this.btnEliminarLibro.TabIndex = 4;
             this.btnEliminarLibro.Text = "Eliminar";
             this.btnEliminarLibro.UseVisualStyleBackColor = true;
+            this.btnEliminarLibro.Click += new System.EventHandler(this.btnEliminarLibro_Click);
             // 
             // btnEditarLibro
             // 
@@ -126,6 +147,7 @@
             this.btnBuscarLibro.TabIndex = 4;
             this.btnBuscarLibro.Text = "Buscar";
             this.btnBuscarLibro.UseVisualStyleBackColor = true;
+            this.btnBuscarLibro.Click += new System.EventHandler(this.btnBuscarLibro_Click);
             // 
             // btnAgregarLibro
             // 
@@ -139,7 +161,7 @@
             // 
             // txtAnio
             // 
-            this.txtAnio.Location = new System.Drawing.Point(736, 7);
+            this.txtAnio.Location = new System.Drawing.Point(736, 15);
             this.txtAnio.Name = "txtAnio";
             this.txtAnio.Size = new System.Drawing.Size(111, 22);
             this.txtAnio.TabIndex = 3;
@@ -147,7 +169,7 @@
             // lblAnio
             // 
             this.lblAnio.AutoSize = true;
-            this.lblAnio.Location = new System.Drawing.Point(685, 7);
+            this.lblAnio.Location = new System.Drawing.Point(685, 15);
             this.lblAnio.Name = "lblAnio";
             this.lblAnio.Size = new System.Drawing.Size(34, 16);
             this.lblAnio.TabIndex = 2;
@@ -155,7 +177,7 @@
             // 
             // txtAutor
             // 
-            this.txtAutor.Location = new System.Drawing.Point(415, 7);
+            this.txtAutor.Location = new System.Drawing.Point(415, 15);
             this.txtAutor.Name = "txtAutor";
             this.txtAutor.Size = new System.Drawing.Size(234, 22);
             this.txtAutor.TabIndex = 3;
@@ -163,7 +185,7 @@
             // lblAutor
             // 
             this.lblAutor.AutoSize = true;
-            this.lblAutor.Location = new System.Drawing.Point(364, 7);
+            this.lblAutor.Location = new System.Drawing.Point(364, 15);
             this.lblAutor.Name = "lblAutor";
             this.lblAutor.Size = new System.Drawing.Size(44, 16);
             this.lblAutor.TabIndex = 2;
@@ -178,7 +200,7 @@
             // 
             // txtTitulo
             // 
-            this.txtTitulo.Location = new System.Drawing.Point(57, 7);
+            this.txtTitulo.Location = new System.Drawing.Point(57, 15);
             this.txtTitulo.Name = "txtTitulo";
             this.txtTitulo.Size = new System.Drawing.Size(269, 22);
             this.txtTitulo.TabIndex = 1;
@@ -195,7 +217,7 @@
             // lblTitulo
             // 
             this.lblTitulo.AutoSize = true;
-            this.lblTitulo.Location = new System.Drawing.Point(7, 7);
+            this.lblTitulo.Location = new System.Drawing.Point(7, 15);
             this.lblTitulo.Name = "lblTitulo";
             this.lblTitulo.Size = new System.Drawing.Size(43, 16);
             this.lblTitulo.TabIndex = 0;
@@ -203,6 +225,14 @@
             // 
             // tabUsuarios
             // 
+            this.tabUsuarios.Controls.Add(this.dgvUsuarios);
+            this.tabUsuarios.Controls.Add(this.btnEliminarUsuario);
+            this.tabUsuarios.Controls.Add(this.btnEditarUsuario);
+            this.tabUsuarios.Controls.Add(this.btnAgregarUsuario);
+            this.tabUsuarios.Controls.Add(this.txtCorreo);
+            this.tabUsuarios.Controls.Add(this.lblCorreo);
+            this.tabUsuarios.Controls.Add(this.txtNombre);
+            this.tabUsuarios.Controls.Add(this.lblNombre);
             this.tabUsuarios.Location = new System.Drawing.Point(4, 25);
             this.tabUsuarios.Name = "tabUsuarios";
             this.tabUsuarios.Padding = new System.Windows.Forms.Padding(3);
@@ -211,14 +241,114 @@
             this.tabUsuarios.Text = "Gestion de Usuarios";
             this.tabUsuarios.UseVisualStyleBackColor = true;
             // 
+            // dgvUsuarios
+            // 
+            this.dgvUsuarios.AllowUserToAddRows = false;
+            this.dgvUsuarios.AllowUserToDeleteRows = false;
+            this.dgvUsuarios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvUsuarios.Location = new System.Drawing.Point(3, 127);
+            this.dgvUsuarios.Name = "dgvUsuarios";
+            this.dgvUsuarios.ReadOnly = true;
+            this.dgvUsuarios.RowHeadersWidth = 51;
+            this.dgvUsuarios.RowTemplate.Height = 24;
+            this.dgvUsuarios.Size = new System.Drawing.Size(1050, 488);
+            this.dgvUsuarios.TabIndex = 8;
+            // 
+            // btnEliminarUsuario
+            // 
+            this.btnEliminarUsuario.Location = new System.Drawing.Point(321, 63);
+            this.btnEliminarUsuario.Name = "btnEliminarUsuario";
+            this.btnEliminarUsuario.Size = new System.Drawing.Size(128, 43);
+            this.btnEliminarUsuario.TabIndex = 5;
+            this.btnEliminarUsuario.Text = "Eliminar";
+            this.btnEliminarUsuario.UseVisualStyleBackColor = true;
+            this.btnEliminarUsuario.Click += new System.EventHandler(this.btnEliminarUsuario_Click);
+            // 
+            // btnEditarUsuario
+            // 
+            this.btnEditarUsuario.Location = new System.Drawing.Point(170, 63);
+            this.btnEditarUsuario.Name = "btnEditarUsuario";
+            this.btnEditarUsuario.Size = new System.Drawing.Size(128, 43);
+            this.btnEditarUsuario.TabIndex = 6;
+            this.btnEditarUsuario.Text = "Editar";
+            this.btnEditarUsuario.UseVisualStyleBackColor = true;
+            this.btnEditarUsuario.Click += new System.EventHandler(this.btnEditarUsuario_Click);
+            // 
+            // btnAgregarUsuario
+            // 
+            this.btnAgregarUsuario.Location = new System.Drawing.Point(23, 63);
+            this.btnAgregarUsuario.Name = "btnAgregarUsuario";
+            this.btnAgregarUsuario.Size = new System.Drawing.Size(128, 43);
+            this.btnAgregarUsuario.TabIndex = 7;
+            this.btnAgregarUsuario.Text = "Agregar";
+            this.btnAgregarUsuario.UseVisualStyleBackColor = true;
+            this.btnAgregarUsuario.Click += new System.EventHandler(this.btnAgregarUsuario_Click);
+            // 
+            // txtCorreo
+            // 
+            this.txtCorreo.Location = new System.Drawing.Point(428, 20);
+            this.txtCorreo.Name = "txtCorreo";
+            this.txtCorreo.Size = new System.Drawing.Size(249, 22);
+            this.txtCorreo.TabIndex = 1;
+            // 
+            // lblCorreo
+            // 
+            this.lblCorreo.AutoSize = true;
+            this.lblCorreo.Location = new System.Drawing.Point(362, 20);
+            this.lblCorreo.Name = "lblCorreo";
+            this.lblCorreo.Size = new System.Drawing.Size(51, 16);
+            this.lblCorreo.TabIndex = 0;
+            this.lblCorreo.Text = "Correo:";
+            // 
+            // txtNombre
+            // 
+            this.txtNombre.Location = new System.Drawing.Point(86, 20);
+            this.txtNombre.Name = "txtNombre";
+            this.txtNombre.Size = new System.Drawing.Size(249, 22);
+            this.txtNombre.TabIndex = 1;
+            // 
+            // lblNombre
+            // 
+            this.lblNombre.AutoSize = true;
+            this.lblNombre.Location = new System.Drawing.Point(20, 20);
+            this.lblNombre.Name = "lblNombre";
+            this.lblNombre.Size = new System.Drawing.Size(59, 16);
+            this.lblNombre.TabIndex = 0;
+            this.lblNombre.Text = "Nombre:";
+            // 
             // tabPrestamos
             // 
+            this.tabPrestamos.Controls.Add(this.dgvPrestamos);
+            this.tabPrestamos.Controls.Add(this.chkPrestamosActivos);
+            this.tabPrestamos.Controls.Add(this.btnDevolverLibro);
+            this.tabPrestamos.Controls.Add(this.btnRealizarPrestamo);
+            this.tabPrestamos.Controls.Add(this.cmbLibros);
+            this.tabPrestamos.Controls.Add(this.cmbUsuarios);
+            this.tabPrestamos.Controls.Add(this.lblLibro);
+            this.tabPrestamos.Controls.Add(this.lblUsuario);
             this.tabPrestamos.Location = new System.Drawing.Point(4, 25);
             this.tabPrestamos.Name = "tabPrestamos";
             this.tabPrestamos.Size = new System.Drawing.Size(1056, 615);
             this.tabPrestamos.TabIndex = 2;
             this.tabPrestamos.Text = "Gestion de Prestamos";
             this.tabPrestamos.UseVisualStyleBackColor = true;
+            // 
+            // cmbUsuarios
+            // 
+            this.cmbUsuarios.FormattingEnabled = true;
+            this.cmbUsuarios.Location = new System.Drawing.Point(92, 11);
+            this.cmbUsuarios.Name = "cmbUsuarios";
+            this.cmbUsuarios.Size = new System.Drawing.Size(228, 24);
+            this.cmbUsuarios.TabIndex = 1;
+            // 
+            // lblUsuario
+            // 
+            this.lblUsuario.AutoSize = true;
+            this.lblUsuario.Location = new System.Drawing.Point(17, 14);
+            this.lblUsuario.Name = "lblUsuario";
+            this.lblUsuario.Size = new System.Drawing.Size(54, 16);
+            this.lblUsuario.TabIndex = 0;
+            this.lblUsuario.Text = "Usuario";
             // 
             // tabEstadisticas
             // 
@@ -229,6 +359,67 @@
             this.tabEstadisticas.TabIndex = 3;
             this.tabEstadisticas.Text = "Estadisticas";
             this.tabEstadisticas.UseVisualStyleBackColor = true;
+            // 
+            // lblLibro
+            // 
+            this.lblLibro.AutoSize = true;
+            this.lblLibro.Location = new System.Drawing.Point(358, 14);
+            this.lblLibro.Name = "lblLibro";
+            this.lblLibro.Size = new System.Drawing.Size(37, 16);
+            this.lblLibro.TabIndex = 0;
+            this.lblLibro.Text = "Libro";
+            // 
+            // cmbLibros
+            // 
+            this.cmbLibros.FormattingEnabled = true;
+            this.cmbLibros.Location = new System.Drawing.Point(433, 11);
+            this.cmbLibros.Name = "cmbLibros";
+            this.cmbLibros.Size = new System.Drawing.Size(228, 24);
+            this.cmbLibros.TabIndex = 1;
+            // 
+            // btnRealizarPrestamo
+            // 
+            this.btnRealizarPrestamo.Location = new System.Drawing.Point(20, 51);
+            this.btnRealizarPrestamo.Name = "btnRealizarPrestamo";
+            this.btnRealizarPrestamo.Size = new System.Drawing.Size(165, 43);
+            this.btnRealizarPrestamo.TabIndex = 8;
+            this.btnRealizarPrestamo.Text = "Realizar Prestamo";
+            this.btnRealizarPrestamo.UseVisualStyleBackColor = true;
+            this.btnRealizarPrestamo.Click += new System.EventHandler(this.btnRealizarPrestamo_Click);
+            // 
+            // btnDevolverLibro
+            // 
+            this.btnDevolverLibro.Location = new System.Drawing.Point(204, 51);
+            this.btnDevolverLibro.Name = "btnDevolverLibro";
+            this.btnDevolverLibro.Size = new System.Drawing.Size(165, 43);
+            this.btnDevolverLibro.TabIndex = 8;
+            this.btnDevolverLibro.Text = "Devolver Seleccionado";
+            this.btnDevolverLibro.UseVisualStyleBackColor = true;
+            this.btnDevolverLibro.Click += new System.EventHandler(this.btnDevolverLibro_Click);
+            // 
+            // chkPrestamosActivos
+            // 
+            this.chkPrestamosActivos.AutoSize = true;
+            this.chkPrestamosActivos.Location = new System.Drawing.Point(20, 110);
+            this.chkPrestamosActivos.Name = "chkPrestamosActivos";
+            this.chkPrestamosActivos.Size = new System.Drawing.Size(216, 20);
+            this.chkPrestamosActivos.TabIndex = 9;
+            this.chkPrestamosActivos.Text = "Mostrar solo prestamos activos";
+            this.chkPrestamosActivos.UseVisualStyleBackColor = true;
+            this.chkPrestamosActivos.CheckedChanged += new System.EventHandler(this.chkPrestamosActivos_CheckedChanged);
+            // 
+            // dgvPrestamos
+            // 
+            this.dgvPrestamos.AllowUserToAddRows = false;
+            this.dgvPrestamos.AllowUserToDeleteRows = false;
+            this.dgvPrestamos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvPrestamos.Location = new System.Drawing.Point(3, 136);
+            this.dgvPrestamos.Name = "dgvPrestamos";
+            this.dgvPrestamos.ReadOnly = true;
+            this.dgvPrestamos.RowHeadersWidth = 51;
+            this.dgvPrestamos.RowTemplate.Height = 24;
+            this.dgvPrestamos.Size = new System.Drawing.Size(1050, 476);
+            this.dgvPrestamos.TabIndex = 10;
             // 
             // Form1
             // 
@@ -243,6 +434,12 @@
             this.tabLibros.ResumeLayout(false);
             this.tabLibros.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLibros)).EndInit();
+            this.tabUsuarios.ResumeLayout(false);
+            this.tabUsuarios.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvUsuarios)).EndInit();
+            this.tabPrestamos.ResumeLayout(false);
+            this.tabPrestamos.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPrestamos)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -267,6 +464,22 @@
         private System.Windows.Forms.TextBox txtBuscar;
         private System.Windows.Forms.Label lblBuscar;
         private System.Windows.Forms.DataGridView dgvLibros;
+        private System.Windows.Forms.TextBox txtCorreo;
+        private System.Windows.Forms.Label lblCorreo;
+        private System.Windows.Forms.TextBox txtNombre;
+        private System.Windows.Forms.Label lblNombre;
+        private System.Windows.Forms.DataGridView dgvUsuarios;
+        private System.Windows.Forms.Button btnEliminarUsuario;
+        private System.Windows.Forms.Button btnEditarUsuario;
+        private System.Windows.Forms.Button btnAgregarUsuario;
+        private System.Windows.Forms.ComboBox cmbUsuarios;
+        private System.Windows.Forms.Label lblUsuario;
+        private System.Windows.Forms.ComboBox cmbLibros;
+        private System.Windows.Forms.Label lblLibro;
+        private System.Windows.Forms.DataGridView dgvPrestamos;
+        private System.Windows.Forms.CheckBox chkPrestamosActivos;
+        private System.Windows.Forms.Button btnDevolverLibro;
+        private System.Windows.Forms.Button btnRealizarPrestamo;
     }
 }
 
