@@ -12,37 +12,49 @@ namespace DesafioPractico1
         private readonly List<Libro> libros = new List<Libro>();
         private int siguienteId = 1; // Para asignar IDs únicos
 
-        public void AgregarLibro(Libro libro)
+        public void CrearLibro(Libro libro)
         {
             libro.Id = siguienteId++;
             libros.Add(libro);
         }
 
-        public Libro BuscarLibro(int id)
+        public Libro Buscar(int id)
         {
             return libros.FirstOrDefault(l => l.Id == id);
         }
 
         public List<Libro> ListarLibros()
         {
-            return libros;
+            return new List<Libro>(libros);
         }
 
-        public void ActualizarLibro(Libro libro)
+        public void Actualizar(Libro libro)
         {
-            var libroExistente = BuscarLibro(libro.Id);
+            var libroExistente = Buscar(libro.Id);
             if (libroExistente != null)
             {
-                libroExistente.Titulo = libro.Titulo;
-                libroExistente.Autor = libro.Autor;
-                libroExistente.AnioPublicacion = libro.AnioPublicacion;
-                libroExistente.Disponible = libro.Disponible;
+                libros[libros.IndexOf(libroExistente)] = libro;
             }
         }
 
-        public void EliminarLibro(int id)
+        public void Eliminar(int id)
         {
-            libros.Remove(BuscarLibro(id));
+            libros.Remove(Buscar(id));
+        }
+
+        public List<Libro> ListarLibrosDisponibles()
+        {
+            return libros.Where(l => l.Disponible).ToList();
+        }
+
+        public List<Libro> BuscarPorAutor(string autor)
+        {
+            return libros.Where(l => l.Autor.ToLower().Contains(autor.ToLower())).ToList();
+        }
+
+        public List<Libro> BuscarPorTitulo(string titulo)
+        {
+            return libros.Where(l => l.Titulo.ToLower().Contains(titulo.ToLower())).ToList();
         }
     }
 }

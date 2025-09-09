@@ -10,7 +10,7 @@ namespace DesafioPractico1
     {
         public string Titulo { get; set; }
         public string Autor { get; set; }
-        public int AnioPublicacion { get; set; }
+        public int Anio { get; set; }
         public bool Disponible { get; set; } = true; // Por defecto, el libro está disponible
 
 

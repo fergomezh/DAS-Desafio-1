@@ -37,10 +37,10 @@
             this.btnAgregarLibro = new System.Windows.Forms.Button();
             this.txtAnio = new System.Windows.Forms.TextBox();
             this.lblAnio = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txtAutor = new System.Windows.Forms.TextBox();
             this.lblAutor = new System.Windows.Forms.Label();
             this.txtBuscar = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtTitulo = new System.Windows.Forms.TextBox();
             this.lblBuscar = new System.Windows.Forms.Label();
             this.lblTitulo = new System.Windows.Forms.Label();
             this.tabUsuarios = new System.Windows.Forms.TabPage();
@@ -72,10 +72,10 @@
             this.tabLibros.Controls.Add(this.btnAgregarLibro);
             this.tabLibros.Controls.Add(this.txtAnio);
             this.tabLibros.Controls.Add(this.lblAnio);
-            this.tabLibros.Controls.Add(this.textBox2);
+            this.tabLibros.Controls.Add(this.txtAutor);
             this.tabLibros.Controls.Add(this.lblAutor);
             this.tabLibros.Controls.Add(this.txtBuscar);
-            this.tabLibros.Controls.Add(this.textBox1);
+            this.tabLibros.Controls.Add(this.txtTitulo);
             this.tabLibros.Controls.Add(this.lblBuscar);
             this.tabLibros.Controls.Add(this.lblTitulo);
             this.tabLibros.Location = new System.Drawing.Point(4, 25);
@@ -116,6 +116,7 @@
             this.btnEditarLibro.TabIndex = 4;
             this.btnEditarLibro.Text = "Editar";
             this.btnEditarLibro.UseVisualStyleBackColor = true;
+            this.btnEditarLibro.Click += new System.EventHandler(this.btnEditarLibro_Click);
             // 
             // btnBuscarLibro
             // 
@@ -134,6 +135,7 @@
             this.btnAgregarLibro.TabIndex = 4;
             this.btnAgregarLibro.Text = "Agregar";
             this.btnAgregarLibro.UseVisualStyleBackColor = true;
+            this.btnAgregarLibro.Click += new System.EventHandler(this.btnAgregarLibro_Click);
             // 
             // txtAnio
             // 
@@ -151,12 +153,12 @@
             this.lblAnio.TabIndex = 2;
             this.lblAnio.Text = "Anio";
             // 
-            // textBox2
+            // txtAutor
             // 
-            this.textBox2.Location = new System.Drawing.Point(415, 7);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(234, 22);
-            this.textBox2.TabIndex = 3;
+            this.txtAutor.Location = new System.Drawing.Point(415, 7);
+            this.txtAutor.Name = "txtAutor";
+            this.txtAutor.Size = new System.Drawing.Size(234, 22);
+            this.txtAutor.TabIndex = 3;
             // 
             // lblAutor
             // 
@@ -174,12 +176,12 @@
             this.txtBuscar.Size = new System.Drawing.Size(269, 22);
             this.txtBuscar.TabIndex = 1;
             // 
-            // textBox1
+            // txtTitulo
             // 
-            this.textBox1.Location = new System.Drawing.Point(57, 7);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(269, 22);
-            this.textBox1.TabIndex = 1;
+            this.txtTitulo.Location = new System.Drawing.Point(57, 7);
+            this.txtTitulo.Name = "txtTitulo";
+            this.txtTitulo.Size = new System.Drawing.Size(269, 22);
+            this.txtTitulo.TabIndex = 1;
             // 
             // lblBuscar
             // 
@@ -253,8 +255,8 @@
         private System.Windows.Forms.TabPage tabPrestamos;
         private System.Windows.Forms.Label lblTitulo;
         private System.Windows.Forms.Label lblAutor;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txtTitulo;
+        private System.Windows.Forms.TextBox txtAutor;
         private System.Windows.Forms.TabPage tabEstadisticas;
         private System.Windows.Forms.TextBox txtAnio;
         private System.Windows.Forms.Label lblAnio;

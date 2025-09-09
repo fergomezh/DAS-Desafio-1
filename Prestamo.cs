@@ -14,7 +14,7 @@ namespace DesafioPractico1
         public DateTime? FechaDevolucion { get; set; } // Nullable para indicar que puede no estar devuelto aún
         public bool Activo { get; set; } = true; // Indica si el préstamo está activo o cerrado
 
-        public string NomreUsuario { get; set; }
+        public string NombreUsuario { get; set; }
         public string TituloLibro { get; set; }
     }
 }
