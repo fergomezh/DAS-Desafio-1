@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabLibros = new System.Windows.Forms.TabPage();
             this.dgvLibros = new System.Windows.Forms.DataGridView();
@@ -58,6 +58,8 @@
             this.tabPrestamos = new System.Windows.Forms.TabPage();
             this.dgvPrestamos = new System.Windows.Forms.DataGridView();
             this.chkPrestamosActivos = new System.Windows.Forms.CheckBox();
+            this.btnRestablecerPrestamos = new System.Windows.Forms.Button();
+            this.btnFiltrarPrestamos = new System.Windows.Forms.Button();
             this.btnDevolverLibro = new System.Windows.Forms.Button();
             this.btnRealizarPrestamo = new System.Windows.Forms.Button();
             this.cmbLibros = new System.Windows.Forms.ComboBox();
@@ -68,8 +70,6 @@
             this.chartEstadisticas = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.cmbTipoGrafico = new System.Windows.Forms.ComboBox();
             this.lblGrafico = new System.Windows.Forms.Label();
-            this.btnFiltrarPrestamos = new System.Windows.Forms.Button();
-            this.btnRestablecerPrestamos = new System.Windows.Forms.Button();
             this.tabControl.SuspendLayout();
             this.tabLibros.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLibros)).BeginInit();
@@ -369,6 +369,26 @@
             this.chkPrestamosActivos.UseVisualStyleBackColor = true;
             this.chkPrestamosActivos.CheckedChanged += new System.EventHandler(this.chkPrestamosActivos_CheckedChanged);
             // 
+            // btnRestablecerPrestamos
+            // 
+            this.btnRestablecerPrestamos.Location = new System.Drawing.Point(570, 51);
+            this.btnRestablecerPrestamos.Name = "btnRestablecerPrestamos";
+            this.btnRestablecerPrestamos.Size = new System.Drawing.Size(165, 43);
+            this.btnRestablecerPrestamos.TabIndex = 8;
+            this.btnRestablecerPrestamos.Text = "Restablecer Filtro";
+            this.btnRestablecerPrestamos.UseVisualStyleBackColor = true;
+            this.btnRestablecerPrestamos.Click += new System.EventHandler(this.btnRestablecerPrestamos_Click);
+            // 
+            // btnFiltrarPrestamos
+            // 
+            this.btnFiltrarPrestamos.Location = new System.Drawing.Point(388, 51);
+            this.btnFiltrarPrestamos.Name = "btnFiltrarPrestamos";
+            this.btnFiltrarPrestamos.Size = new System.Drawing.Size(165, 43);
+            this.btnFiltrarPrestamos.TabIndex = 8;
+            this.btnFiltrarPrestamos.Text = "Filtrar por Usuario";
+            this.btnFiltrarPrestamos.UseVisualStyleBackColor = true;
+            this.btnFiltrarPrestamos.Click += new System.EventHandler(this.btnFiltrarPrestamos_Click);
+            // 
             // btnDevolverLibro
             // 
             this.btnDevolverLibro.Location = new System.Drawing.Point(204, 51);
@@ -438,16 +458,16 @@
             // 
             // chartEstadisticas
             // 
-            chartArea3.Name = "ChartArea1";
-            this.chartEstadisticas.ChartAreas.Add(chartArea3);
-            legend3.Name = "Legend1";
-            this.chartEstadisticas.Legends.Add(legend3);
+            chartArea1.Name = "ChartArea1";
+            this.chartEstadisticas.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.chartEstadisticas.Legends.Add(legend1);
             this.chartEstadisticas.Location = new System.Drawing.Point(23, 60);
             this.chartEstadisticas.Name = "chartEstadisticas";
-            series3.ChartArea = "ChartArea1";
-            series3.Legend = "Legend1";
-            series3.Name = "Series1";
-            this.chartEstadisticas.Series.Add(series3);
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.chartEstadisticas.Series.Add(series1);
             this.chartEstadisticas.Size = new System.Drawing.Size(1018, 549);
             this.chartEstadisticas.TabIndex = 2;
             this.chartEstadisticas.Text = "chart1";
@@ -473,26 +493,6 @@
             this.lblGrafico.TabIndex = 0;
             this.lblGrafico.Text = "Tipo de Grafico:";
             // 
-            // btnFiltrarPrestamos
-            // 
-            this.btnFiltrarPrestamos.Location = new System.Drawing.Point(388, 51);
-            this.btnFiltrarPrestamos.Name = "btnFiltrarPrestamos";
-            this.btnFiltrarPrestamos.Size = new System.Drawing.Size(165, 43);
-            this.btnFiltrarPrestamos.TabIndex = 8;
-            this.btnFiltrarPrestamos.Text = "Filtrar por Usuario";
-            this.btnFiltrarPrestamos.UseVisualStyleBackColor = true;
-            this.btnFiltrarPrestamos.Click += new System.EventHandler(this.btnFiltrarPrestamos_Click);
-            // 
-            // btnRestablecerPrestamos
-            // 
-            this.btnRestablecerPrestamos.Location = new System.Drawing.Point(570, 51);
-            this.btnRestablecerPrestamos.Name = "btnRestablecerPrestamos";
-            this.btnRestablecerPrestamos.Size = new System.Drawing.Size(165, 43);
-            this.btnRestablecerPrestamos.TabIndex = 8;
-            this.btnRestablecerPrestamos.Text = "Restablecer Filtro";
-            this.btnRestablecerPrestamos.UseVisualStyleBackColor = true;
-            this.btnRestablecerPrestamos.Click += new System.EventHandler(this.btnRestablecerPrestamos_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -500,7 +500,7 @@
             this.ClientSize = new System.Drawing.Size(1085, 662);
             this.Controls.Add(this.tabControl);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Sistema de Gestion de Biblioteca";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.tabControl.ResumeLayout(false);
             this.tabLibros.ResumeLayout(false);

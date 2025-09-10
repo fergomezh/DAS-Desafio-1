@@ -194,6 +194,7 @@ namespace DesafioPractico1
             {
                 var id = (int)dgvLibros.SelectedRows[0].Cells["Id"].Value;
                 gestorBiblioteca.EditarLibro(id, txtTitulo.Text, txtAutor.Text, int.Parse(txtAnio.Text));
+                MessageBox.Show("Libro editado con exito!", "Informacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 LimpiarCamposLibro();
                 ActualizarGridLibros();
                 return;
@@ -262,6 +263,7 @@ namespace DesafioPractico1
             if (ValidarCamposUsuario())
             {
                 gestorBiblioteca.AgregarUsuario(txtNombre.Text, txtCorreo.Text);
+                MessageBox.Show("Usuario agregado con exito!", "Informacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 LimpiarCamposUsuario();
                 ActualizarTodo();
             }
@@ -300,7 +302,7 @@ namespace DesafioPractico1
                     gestorBiblioteca.EliminarUsuario(id);
                     MessageBox.Show("Usuario eliminado con exito!", "Informacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     LimpiarCamposUsuario();
-                    ActualizarGridUsuarios();
+                    ActualizarTodo();
                 }
                 return;
             }
