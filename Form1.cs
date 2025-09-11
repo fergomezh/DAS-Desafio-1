@@ -144,7 +144,7 @@ namespace DesafioPractico1
                 gestorBiblioteca.AgregarLibro(txtTitulo.Text, txtAutor.Text, int.Parse(txtAnio.Text));
                 MessageBox.Show("Libro agregado exitosamente!", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 LimpiarCamposLibro();
-                ActualizarGridLibros();
+                ActualizarTodo();
             }
         }
 
@@ -196,7 +196,7 @@ namespace DesafioPractico1
                 gestorBiblioteca.EditarLibro(id, txtTitulo.Text, txtAutor.Text, int.Parse(txtAnio.Text));
                 MessageBox.Show("Libro editado con exito!", "Informacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 LimpiarCamposLibro();
-                ActualizarGridLibros();
+                ActualizarTodo();
                 return;
             }
             else if (dgvLibros.SelectedRows.Count == 0 || dgvLibros.SelectedRows.Count > 1)
@@ -216,7 +216,7 @@ namespace DesafioPractico1
                     gestorBiblioteca.EliminarLibro(id);
                     MessageBox.Show("Libro eliminado con exito!", "Informacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     LimpiarCamposLibro();
-                    ActualizarGridLibros();
+                    ActualizarTodo();
                     return;
                 }
             }
@@ -282,7 +282,7 @@ namespace DesafioPractico1
                 var id = (int)dgvUsuarios.SelectedRows[0].Cells["Id"].Value;
                 gestorBiblioteca.EditarUsuario(id, txtNombre.Text, txtCorreo.Text);
                 LimpiarCamposUsuario();
-                ActualizarGridUsuarios();
+                ActualizarTodo();
                 return;
             }
             else if (dgvUsuarios.SelectedRows.Count == 0 || dgvUsuarios.SelectedRows.Count > 1)
